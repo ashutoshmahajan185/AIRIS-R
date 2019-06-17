@@ -1,0 +1,14 @@
+function blobAnalysis
+readerobj = mmreader('stoprd.avi');
+vidFrames = read(readerobj);
+%get number of frames
+numFrames = get(readerobj, 'numberOfFrames');
+%figure(1)
+implay(vidFrames)
+for k = 1 : numFrames-1
+mov(k).cdata = vidFrames(:,:,:,k);
+mov(k).colormap = [];
+mov(k).cdata=blobAnalysis(mov(k).cdata);
+vidFrames(:,:,:,k)=mov(k).cdata;
+end
+implay(vidFrames);
